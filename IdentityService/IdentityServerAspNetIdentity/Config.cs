@@ -63,7 +63,8 @@ namespace IdentityServerAspNetIdentity
 
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
                     // scopes that client has access to
-                    AllowedScopes = { "api1" }
+                    AllowedScopes = { "api1" },
+                    AccessTokenLifetime=3600*24*30
                 },
                 // interactive ASP.NET Core MVC client
                 new Client
@@ -84,7 +85,8 @@ namespace IdentityServerAspNetIdentity
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         "api1"
-                    }
+                    },
+                    
                 },
                 // JavaScript Client
                 new Client

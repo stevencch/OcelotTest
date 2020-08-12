@@ -38,7 +38,7 @@ namespace ProductApi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseConsul();
             app.UseRouting();
 

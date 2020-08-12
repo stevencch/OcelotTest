@@ -38,7 +38,7 @@ namespace OrderApi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+           // app.UseHttpsRedirection();
             app.UseConsul();
             app.UseRouting();
 

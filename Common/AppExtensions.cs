@@ -32,18 +32,19 @@ namespace Common
             if (!(app.Properties["server.Features"] is FeatureCollection features)) return app;
 
             var addresses = features.Get<IServerAddressesFeature>();
-            var address = addresses.Addresses.First();
+            var addressHttps = addresses.Addresses.Where(x=>x.Contains("https")).First();
+            var addressHttp = addresses.Addresses.Where(x => !x.Contains("https")).First();
 
-            Console.WriteLine($"address={address}");
+            Console.WriteLine($"address={addressHttps}");
 
-            var uri = new Uri(address);
+            var uri = new Uri(addressHttps);
             var registration = new AgentServiceRegistration()
             {
                 ID = $"MyService-{uri.Port}",
                 // servie name  
                 Name = "MyService",
                 Address = $"{uri.Host}",
-                Port = uri.Port
+                Port = uri.Port,
             };
             registration.Check = new AgentServiceCheck()
             {
@@ -52,7 +53,7 @@ namespace Common
                 //健康检查时间间隔，或者称为心跳 间隔 
                 Interval = TimeSpan.FromSeconds(10),
                 //健康检查地址 
-                HTTP = $"https://{uri.Host}:{uri.Port}/health",
+                HTTP = $"{addressHttp}/health",
                 Timeout = TimeSpan.FromSeconds(5)
             };
 
