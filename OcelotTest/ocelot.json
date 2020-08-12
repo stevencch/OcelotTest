@@ -1,9 +1,9 @@
 {
   "Routes": [
     {
-      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamPathTemplate": "/api/{everything}",
       "DownstreamScheme": "https",
-      "UpstreamPathTemplate": "/{everything}",
+      "UpstreamPathTemplate": "/api/{everything}",
       "UpstreamHttpMethod": [ "Get", "Post" ],
       "ServiceName": "MyService",
       "LoadBalancerOptions": {

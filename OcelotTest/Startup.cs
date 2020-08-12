@@ -30,14 +30,16 @@ namespace OcelotTest
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllersWithViews();
 
             var authenticationProviderKey = "TestKey";
             //Action<IdentityServerAuthenticationOptions> options = o =>
             //{
             //    o.Authority = "https://localhost:5001";
-            //    o.ApiName = "api1";
+            //    o.ApiName = "client";
             //    o.SupportedTokens = SupportedTokens.Both;
+            //    o.SaveToken = true;
+            //    o.ApiSecret = "secret";
             //};
 
             //services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
@@ -53,6 +55,8 @@ namespace OcelotTest
                 ValidateAudience = false
             };
         });
+
+
             services.AddOcelot()
                 .AddConsul();
         }
@@ -66,16 +70,23 @@ namespace OcelotTest
             }
 
             app.UseHttpsRedirection();
-            app.UseAuthentication();
-            app.UseOcelot().Wait();
+            app.UseStaticFiles();
 
+            
             app.UseRouting();
+            app.UseAuthentication();
+            
+
+            app.MapWhen(context => context.Request.Path.StartsWithSegments("/api"), appBuilder =>
+            {
+                appBuilder.UseOcelot().Wait();
+            });
 
             app.UseAuthorization();
-
+            
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapDefaultControllerRoute();
             });
         }
     }

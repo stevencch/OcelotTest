@@ -14,10 +14,10 @@ namespace ProductApi.Controllers
         public IActionResult Get()
         {
             Console.WriteLine("running health check" + DateTime.Now);
-            if (DateTime.Now.Minute % 2 == 0)
-            {
-                return BadRequest("error");
-            }
+            //if (DateTime.Now.Minute % 2 == 0)
+            //{
+            //    return BadRequest("error");
+            //}
             return Ok("OK");
         }
     }
