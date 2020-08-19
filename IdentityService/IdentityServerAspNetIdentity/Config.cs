@@ -96,9 +96,9 @@ namespace IdentityServerAspNetIdentity
                     AllowedGrantTypes = GrantTypes.Code,
                     RequireClientSecret = false,
 
-                    RedirectUris =           { "https://localhost:7001/home/callback" },
-                    PostLogoutRedirectUris = { "https://localhost:7001/" },
-                    AllowedCorsOrigins =     { "https://localhost:7001" },
+                    RedirectUris =           { "https://localhost:7001/home/callback","https://kdev.chemistwarehouse.co.nz/apigateway/home/callback" },
+                    PostLogoutRedirectUris = { "https://localhost:7001/","https://kdev.chemistwarehouse.co.nz/apigateway/"},
+                    AllowedCorsOrigins =     { "https://localhost:7001" ,"https://kdev.chemistwarehouse.co.nz"},
 
                     AllowedScopes =
                     {

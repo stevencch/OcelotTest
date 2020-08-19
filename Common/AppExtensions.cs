@@ -23,21 +23,22 @@ namespace Common
             return services;
         }
 
-        public static IApplicationBuilder UseConsul(this IApplicationBuilder app)
+        public static IApplicationBuilder UseConsul(this IApplicationBuilder app, string addressHttp)
         {
+            Console.WriteLine(addressHttp);
             var consulClient = app.ApplicationServices.GetRequiredService<IConsulClient>();
             var logger = app.ApplicationServices.GetRequiredService<ILoggerFactory>().CreateLogger("AppExtensions");
             var lifetime = app.ApplicationServices.GetRequiredService<IApplicationLifetime>();
 
-            if (!(app.Properties["server.Features"] is FeatureCollection features)) return app;
+            //if (!(app.Properties["server.Features"] is FeatureCollection features)) return app;
 
-            var addresses = features.Get<IServerAddressesFeature>();
-            var addressHttps = addresses.Addresses.Where(x=>x.Contains("https")).First();
-            var addressHttp = addresses.Addresses.Where(x => !x.Contains("https")).First();
+            //var addresses = features.Get<IServerAddressesFeature>();
+            //var addressHttps = addresses.Addresses.Where(x=>x.Contains("https")).First();
+            //var addressHttp = addresses.Addresses.Where(x => !x.Contains("https")).First();
 
-            Console.WriteLine($"address={addressHttps}");
+            Console.WriteLine($"address={addressHttp}");
 
-            var uri = new Uri(addressHttps);
+            var uri = new Uri(addressHttp);
             var registration = new AgentServiceRegistration()
             {
                 ID = $"MyService-{uri.Port}",

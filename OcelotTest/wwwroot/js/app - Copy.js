@@ -19,12 +19,12 @@ document.getElementById("logout").addEventListener("click", logout, false);
 
 
 var config = {
-    authority: "https://kdev.chemistwarehouse.co.nz/identityserver",
+    authority: "https://localhost:5001",
     client_id: "js",
-    redirect_uri: "https://kdev.chemistwarehouse.co.nz/apigateway/home/callback",
+    redirect_uri: "https://localhost:7001/home/callback",
     response_type: "code",
     scope: "openid profile api1",
-    post_logout_redirect_uri: "https://kdev.chemistwarehouse.co.nz/apigateway/",
+    post_logout_redirect_uri: "https://localhost:7001/",
 };
 var mgr = new Oidc.UserManager(config);
 
@@ -45,7 +45,7 @@ function login() {
 
 function api() {
     mgr.getUser().then(function (user) {
-        var url = "https://kdev.chemistwarehouse.co.nz/apigateway/api/values";
+        var url = "https://localhost:7001/api/values";
 
         var xhr = new XMLHttpRequest();
         xhr.open("GET", url);

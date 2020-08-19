@@ -64,7 +64,7 @@ namespace OrderApi
             }
 
             // app.UseHttpsRedirection();
-            app.UseConsul();
+            app.UseConsul(Configuration["urls"]);
             app.UseStaticFiles();
 
             app.UseRouting();

@@ -48,7 +48,7 @@ namespace OcelotTest
             services.AddAuthentication()
         .AddJwtBearer(authenticationProviderKey, x =>
         {
-            x.Authority = "https://localhost:5001";
+            x.Authority = Configuration["IdentityServer"];
             x.Audience = "api1";
             x.TokenValidationParameters = new TokenValidationParameters
             {

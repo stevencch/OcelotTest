@@ -2,7 +2,7 @@
   "Routes": [
     {
       "DownstreamPathTemplate": "/api/{everything}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/api/{everything}",
       "UpstreamHttpMethod": [ "Get", "Post" ],
       "ServiceName": "MyService",
@@ -17,6 +17,7 @@
     }
   ],
   "GlobalConfiguration": {
+    //"BaseUrl": "https://kdev.chemistwarehouse.co.nz/apigateway",
     "BaseUrl": "https://localhost:7001",
     "ServiceDiscoveryProvider": {
       "Host": "localhost",

@@ -1,7 +1,9 @@
-﻿<script src="/js/oidc-client.js"></script>
+﻿@*<script src="/js/oidc-client.js"></script>*@
+<script src="https://kdev.chemistwarehouse.co.nz/apigateway/js/oidc-client.js"></script>
 <script>
     new Oidc.UserManager({ response_mode: "query" }).signinRedirectCallback().then(function () {
-        window.location = "/";
+        //window.location = "/";
+        window.location = "/apigateway";
     }).catch(function (e) {
         console.error(e);
     });
